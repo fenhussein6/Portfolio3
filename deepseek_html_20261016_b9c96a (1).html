@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Fentaw Hussen Abegaz | E-Portfolio</title>
+<style>
+  :root{
+    --primary:#0b6e4f;
+    --primary-light:#12946a;
+    --accent:#f4a261;
+    --dark:#0f1f1a;
+    --light:#f7faf8;
+    --gray:#5c6b64;
+    --shadow:0 10px 30px rgba(0,0,0,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:var(--light);
+    color:var(--dark);
+    line-height:1.7;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav{
+    position:fixed;top:0;left:0;width:100%;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    box-shadow:0 2px 15px rgba(0,0,0,.06);
+    z-index:1000;
+  }
+  .nav-container{
+    max-width:1200px;margin:auto;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1rem 2rem;
+  }
+  .logo{
+    font-weight:700;font-size:1.1rem;color:var(--primary);
+    letter-spacing:.5px;
+  }
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{
+    text-decoration:none;color:var(--dark);font-weight:500;
+    position:relative;transition:.3s;
+  }
+  .nav-links a::after{
+    content:'';position:absolute;bottom:-5px;left:0;
+    width:0;height:2px;background:var(--accent);transition:.3s;
+  }
+  .nav-links a:hover{color:var(--primary);}
+  .nav-links a:hover::after{width:100%;}
+  .menu-toggle{display:none;font-size:1.6rem;cursor:pointer;color:var(--primary);background:none;border:none;}
+
+  /* ===== HERO / HOME ===== */
+  #home{
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#e8f5ef 0%,#f7faf8 60%,#fdf3e7 100%);
+    padding:8rem 2rem 4rem;
+    position:relative;overflow:hidden;
+  }
+  #home::before{
+    content:'';position:absolute;top:-100px;right:-100px;
+    width:400px;height:400px;border-radius:50%;
+    background:radial-gradient(circle,rgba(11,110,79,.12),transparent 70%);
+  }
+  #home::after{
+    content:'';position:absolute;bottom:-80px;left:-80px;
+    width:320px;height:320px;border-radius:50%;
+    background:radial-gradient(circle,rgba(244,162,97,.18),transparent 70%);
+  }
+  .hero{
+    max-width:1100px;display:grid;
+    grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center;
+    position:relative;z-index:2;
+  }
+  .hero-text h1{
+    font-size:2.8rem;line-height:1.2;margin-bottom:1rem;color:var(--dark);
+  }
+  .hero-text h1 span{color:var(--primary);}
+  .hero-text .tagline{
+    font-size:1.15rem;color:var(--gray);margin-bottom:1.5rem;
+  }
+  .badge-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.8rem;}
+  .badge{
+    background:white;color:var(--primary);
+    padding:.4rem 1rem;border-radius:50px;font-size:.85rem;
+    font-weight:600;box-shadow:var(--shadow);
+  }
+  .btn-group{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn{
+    padding:.85rem 2rem;border-radius:50px;font-weight:600;
+    text-decoration:none;transition:.3s;display:inline-block;
+    border:2px solid transparent;cursor:pointer;font-size:.95rem;
+  }
+  .btn-primary{background:var(--primary);color:white;}
+  .btn-primary:hover{background:var(--primary-light);transform:translateY(-3px);box-shadow:0 10px 25px rgba(11,110,79,.3);}
+  .btn-outline{border-color:var(--primary);color:var(--primary);background:transparent;}
+  .btn-outline:hover{background:var(--primary);color:white;transform:translateY(-3px);}
+
+  .hero-card{
+    background:white;border-radius:24px;padding:2.5rem;
+    box-shadow:var(--shadow);text-align:center;
+    border-top:5px solid var(--primary);
+  }
+  .avatar{
+    width:130px;height:130px;border-radius:50%;margin:0 auto 1.2rem;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    display:flex;align-items:center;justify-content:center;
+    font-size:3rem;color:white;font-weight:700;
+    box-shadow:0 8px 20px rgba(11,110,79,.25);
+  }
+  .hero-card h3{font-size:1.3rem;margin-bottom:.3rem;}
+  .hero-card p{color:var(--gray);font-size:.9rem;margin-bottom:1rem;}
+  .quick-stats{display:flex;justify-content:space-around;margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid #eee;}
+  .quick-stats div{text-align:center;}
+  .quick-stats strong{display:block;font-size:1.4rem;color:var(--primary);}
+  .quick-stats span{font-size:.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;}
+
+  /* ===== SECTIONS ===== */
+  section{padding:5rem 2rem;}
+  .container{max-width:1100px;margin:auto;}
+  .section-title{
+    text-align:center;margin-bottom:3rem;
+  }
+  .section-title h2{
+    font-size:2.2rem;color:var(--dark);position:relative;display:inline-block;
+  }
+  .section-title h2::after{
+    content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
+    width:70px;height:4px;background:var(--accent);border-radius:2px;
+  }
+  .section-title p{color:var(--gray);margin-top:1.2rem;max-width:650px;margin-left:auto;margin-right:auto;}
+
+  /* ===== ABOUT ===== */
+  #about{background:white;}
+  .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start;}
+  .about-sidebar{
+    background:linear-gradient(160deg,var(--primary),#0a5a40);
+    border-radius:20px;padding:2rem;color:white;position:sticky;top:100px;
+  }
+  .about-sidebar h3{font-size:1.3rem;margin-bottom:1.2rem;border-bottom:2px solid rgba(255,255,255,.25);padding-bottom:.6rem;}
+  .info-item{display:flex;gap:.8rem;margin-bottom:1rem;font-size:.9rem;align-items:flex-start;}
+  .info-item .icon{font-size:1.1rem;}
+  .about-content h3{color:var(--primary);margin-bottom:.8rem;font-size:1.3rem;}
+  .about-content p{color:var(--gray);margin-bottom:1.2rem;}
+  .skills{margin-top:1.5rem;}
+  .skill{margin-bottom:1rem;}
+  .skill-label{display:flex;justify-content:space-between;font-weight:600;font-size:.9rem;margin-bottom:.4rem;}
+  .skill-bar{background:#e8eeeb;border-radius:10px;height:9px;overflow:hidden;}
+  .skill-fill{
+    height:100%;border-radius:10px;
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+    width:0;transition:width 1.5s ease;
+  }
+
+  /* ===== ARTIFACTS ===== */
+  #artifacts{background:var(--light);}
+  .filter-buttons{
+    display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;margin-bottom:2.5rem;
+  }
+  .filter-btn{
+    padding:.55rem 1.4rem;border-radius:50px;border:2px solid var(--primary);
+    background:transparent;color:var(--primary);font-weight:600;
+    cursor:pointer;transition:.3s;font-size:.85rem;
+  }
+  .filter-btn.active,.filter-btn:hover{background:var(--primary);color:white;}
+  .artifacts-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.8rem;
+  }
+  .artifact-card{
+    background:white;border-radius:18px;padding:1.8rem;
+    box-shadow:var(--shadow);transition:.4s;cursor:pointer;
+    border-left:5px solid var(--primary);position:relative;
+    opacity:1;
+  }
+  .artifact-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.12);}
+  .artifact-card.hidden{display:none;}
+  .artifact-icon{
+    width:55px;height:55px;border-radius:14px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.6rem;margin-bottom:1rem;
+  }
+  .artifact-card h3{font-size:1.1rem;margin-bottom:.5rem;color:var(--dark);}
+  .artifact-card .meta{font-size:.78rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.7rem;}
+  .artifact-card p{font-size:.9rem;color:var(--gray);}
+  .artifact-tag{
+    display:inline-block;margin-top:1rem;font-size:.75rem;
+    background:#e8f5ef;color:var(--primary);padding:.25rem .8rem;border-radius:50px;font-weight:600;
+  }
+
+  /* ===== MODAL ===== */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(15,31,26,.7);
+    display:none;align-items:center;justify-content:center;
+    z-index:2000;padding:2rem;backdrop-filter:blur(4px);
+  }
+  .modal-overlay.active{display:flex;animation:fadeIn .3s ease;}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .modal{
+    background:white;border-radius:20px;max-width:600px;width:100%;
+    padding:2.5rem;position:relative;max-height:85vh;overflow-y:auto;
+    animation:slideUp .35s ease;
+  }
+  @keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .modal-close{
+    position:absolute;top:1rem;right:1.2rem;font-size:1.6rem;
+    background:none;border:none;cursor:pointer;color:var(--gray);
+    transition:.3s;
+  }
+  .modal-close:hover{color:#e63946;transform:rotate(90deg);}
+  .modal h2{color:var(--primary);margin-bottom:.5rem;}
+  .modal .modal-meta{color:var(--accent);font-weight:600;font-size:.85rem;text-transform:uppercase;margin-bottom:1.2rem;}
+  .modal p{color:var(--gray);margin-bottom:1rem;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--dark);color:#c8d6cf;text-align:center;
+    padding:2.5rem 2rem;font-size:.9rem;
+  }
+  footer strong{color:var(--accent);}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;text-align:center;}
+    .badge-row,.btn-group{justify-content:center;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-sidebar{position:static;}
+  }
+  @media(max-width:640px){
+    .nav-links{
+      position:absolute;top:100%;left:0;width:100%;
+      background:white;flex-direction:column;gap:0;
+      box-shadow:0 10px 20px rgba(0,0,0,.1);
+      max-height:0;overflow:hidden;transition:.4s;
+    }
+    .nav-links.open{max-height:300px;}
+    .nav-links li{padding:1rem 2rem;border-bottom:1px solid #f0f0f0;}
+    .menu-toggle{display:block;}
+    .hero-text h1{font-size:2rem;}
+    .section-title h2{font-size:1.7rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="nav-container">
+    <div class="logo">Dr. Fentaw <span>Hussen</span></div>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#artifacts">Artifacts</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== HOME ===== -->
+<section id="home">
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Hello, I'm <span>Dr. Fentaw Hussen Abegaz</span></h1>
+      <p class="tagline">Biochemist • Veterinary Medicine Instructor • Curriculum Developer • Researcher</p>
+      <div class="badge-row">
+        <span class="badge">🎓 Biochemistry</span>
+        <span class="badge">🐾 Veterinary Medicine</span>
+        <span class="badge">📚 Outcome-Based Learning</span>
+        <span class="badge">🔬 Research</span>
+      </div>
+      <div class="btn-group">
+        <a href="#about" class="btn btn-primary">About Me</a>
+        <a href="#artifacts" class="btn btn-outline">View Artifacts</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="avatar">FH</div>
+      <h3>Dr. Fentaw Hussen Abegaz</h3>
+      <p>Instructor, School of Veterinary Medicine<br>Wollo University</p>
+      <div class="quick-stats">
+        <div><strong>2024</strong><span>Joined Wollo</span></div>
+        <div><strong>2+</strong><span>Institutions</span></div>
+        <div><strong>3</strong><span>Core Roles</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="section-title">
+      <h2>About Me</h2>
+      <p>A dedicated biochemist and educator committed to advancing veterinary biochemistry and physiology education through outcome-based learning and modern instructional design.</p>
+    </div>
+
+    <div class="about-grid">
+      <!-- Sidebar -->
+      <aside class="about-sidebar">
+        <h3>Professional Snapshot</h3>
+        <div class="info-item"><span class="icon">🏛️</span><div><strong>Current Position</strong><br>Instructor, School of Veterinary Medicine, Wollo University</div></div>
+        <div class="info-item"><span class="icon">📅</span><div><strong>Since</strong><br>September 2024</div></div>
+        <div class="info-item"><span class="icon">🎓</span><div><strong>Previous Role</strong><br>Lecturer, Samar University</div></div>
+        <div class="info-item"><span class="icon">🧪</span><div><strong>Field</strong><br>Biochemistry &amp; Physiology</div></div>
+        <div class="info-item"><span class="icon">📍</span><div><strong>Location</strong><br>Wollo, Ethiopia</div></div>
+      </aside>
+
+      <!-- Content -->
+      <div class="about-content">
+        <h3>Who I Am</h3>
+        <p>
+          Dr. Fentaw Hussen Abegaz is a dedicated biochemist and instructor at <strong>Wollo University School of Veterinary Medicine</strong>, where he has been serving since <strong>September 2024</strong>. He is actively engaged in teaching, curriculum development, and research, contributing to the advancement of veterinary biochemistry and physiology education.
+        </p>
+        <p>
+          His academic work emphasizes <strong>outcome-based learning</strong> and <strong>instructional design</strong>, aligning with modern educational standards. Prior to joining Wollo University, Dr. Fentaw served as a lecturer at <strong>Samar University</strong>, where he built a strong foundation in higher education teaching and student mentorship.
+        </p>
+        <p>
+          His mission is to bridge foundational biochemical sciences with practical veterinary applications, preparing the next generation of veterinary professionals with the knowledge and critical thinking skills they need to succeed.
+        </p>
+
+        <h3>Core Competencies</h3>
+        <div class="skills">
+          <div class="skill">
+            <div class="skill-label"><span>Veterinary Biochemistry</span><span>95%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>Physiology Education</span><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>Curriculum Development</span><span>88%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>Outcome-Based Learning</span><span>92%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="92%"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>Instructional Design</span><span>85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>Scientific Research</span><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ARTIFACTS ===== -->
+<section id="artifacts">
+  <div class="container">
+    <div class="section-title">
+      <h2>Artifacts</h2>
+      <p>A curated collection of teaching materials, curriculum documents, research contributions, and instructional design work. Click any card to learn more.</p>
+    </div>
+
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="teaching">Teaching</button>
+      <button class="filter-btn" data-filter="curriculum">Curriculum</button>
+      <button class="filter-btn" data-filter="research">Research</button>
+      <button class="filter-btn" data-filter="design">Instructional Design</button>
+    </div>
+
+    <div class="artifacts-grid">
+
+      <!-- Artifact 1 -->
+      <div class="artifact-card" data-category="teaching"
+           data-title="Veterinary Biochemistry Lecture Series"
+           data-meta="Teaching Artifact • 2024–Present"
+           data-desc="A comprehensive lecture series developed for veterinary medicine students at Wollo University. The series covers foundational biochemistry topics including protein structure, enzyme kinetics, metabolic pathways, and their clinical relevance in veterinary practice. Each lecture integrates real-world case studies and interactive problem-solving sessions.">
+        <div class="artifact-icon">🧬</div>
+        <h3>Veterinary Biochemistry Lecture Series</h3>
+        <div class="meta">Teaching • 2024–Present</div>
+        <p>Comprehensive lectures integrating biochemistry with clinical veterinary practice through case-based learning.</p>
+        <span class="artifact-tag">Teaching</span>
+      </div>
+
+      <!-- Artifact 2 -->
+      <div class="artifact-card" data-category="curriculum"
+           data-title="Outcome-Based Veterinary Biochemistry Curriculum"
+           data-meta="Curriculum Artifact • 2024"
+           data-desc="A fully redesigned curriculum aligned with outcome-based education (OBE) principles. The curriculum maps learning outcomes to assessments, integrates competency-based milestones, and ensures alignment with national and international veterinary education standards. It includes detailed course guides, assessment rubrics, and mapping matrices.">
+        <div class="artifact-icon">📘</div>
+        <h3>Outcome-Based Curriculum Design</h3>
+        <div class="meta">Curriculum • 2024</div>
+        <p>Redesigned veterinary biochemistry curriculum aligned with OBE principles and competency-based milestones.</p>
+        <span class="artifact-tag">Curriculum</span>
+      </div>
+
+      <!-- Artifact 3 -->
+      <div class="artifact-card" data-category="design"
+           data-title="Instructional Design Framework for Physiology"
+           data-meta="Instructional Design • 2024"
+           data-desc="An instructional design framework applying backward design and Bloom's taxonomy to veterinary physiology education. The framework includes module templates, active learning strategies, formative assessment tools, and technology integration guidelines for blended and flipped classrooms.">
+        <div class="artifact-icon">🎯</div>
+        <h3>Instructional Design Framework</h3>
+        <div class="meta">Instructional Design • 2024</div>
+        <p>Backward design framework applying Bloom's taxonomy and active learning to veterinary physiology.</p>
+        <span class="artifact-tag">Instructional Design</span>
+      </div>
+
+      <!-- Artifact 4 -->
+      <div class="artifact-card" data-category="research"
+           data-title="Biochemical Research Contributions"
+           data-meta="Research Artifact • Ongoing"
+           data-desc="Ongoing research contributions in veterinary biochemistry, with a focus on metabolic disorders in livestock, biomarker discovery, and the biochemical basis of animal diseases. This work supports evidence-based teaching and contributes to the broader scientific community.">
+        <div class="artifact-icon">🔬</div>
+        <h3>Biochemical Research Contributions</h3>
+        <div class="meta">Research • Ongoing</div>
+        <p>Research on metabolic disorders, biomarkers, and biochemical basis of animal diseases.</p>
+        <span class="artifact-tag">Research</span>
+      </div>
+
+      <!-- Artifact 5 -->
+      <div class="artifact-card" data-category="teaching"
+           data-title="Student Mentorship & Advising Portfolio"
+           data-meta="Teaching Artifact • 2024–Present"
+           data-desc="A structured mentorship and academic advising portfolio documenting student support activities, including one-on-one advising sessions, research supervision, career guidance, and academic intervention strategies for at-risk students.">
+        <div class="artifact-icon">🤝</div>
+        <h3>Student Mentorship Portfolio</h3>
+        <div class="meta">Teaching • 2024–Present</div>
+        <p>Structured mentorship, advising, and research supervision for veterinary medicine students.</p>
+        <span class="artifact-tag">Teaching</span>
+      </div>
+
+      <!-- Artifact 6 -->
+      <div class="artifact-card" data-category="curriculum"
+           data-title="Assessment & Rubric Development"
+           data-meta="Curriculum Artifact • 2024"
+           data-desc="A set of assessment tools and rubrics developed to measure student achievement of learning outcomes in biochemistry and physiology courses. Includes formative and summative assessment instruments, competency checklists, and standardized grading rubrics.">
+        <div class="artifact-icon">📊</div>
+        <h3>Assessment &amp; Rubric Development</h3>
+        <div class="meta">Curriculum • 2024</div>
+        <p>Formative and summative assessment tools with standardized rubrics for biochemistry and physiology.</p>
+        <span class="artifact-tag">Curriculum</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modalTitle"></h2>
+    <div class="modal-meta" id="modalMeta"></div>
+    <p id="modalDesc"></p>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>© 2025 <strong>Dr. Fentaw Hussen Abegaz</strong> — Biochemist &amp; Veterinary Medicine Instructor, Wollo University</p>
+  <p style="margin-top:.5rem;font-size:.8rem;opacity:.7;">E-Portfolio • Teaching • Curriculum • Research • Instructional Design</p>
+</footer>
+
+<script>
+  /* ===== Mobile Menu Auto-Close ===== */
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.remove('open');
+    });
+  });
+
+  /* ===== Animate Skill Bars on Scroll ===== */
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-fill').forEach(fill => {
+          fill.style.width = fill.dataset.width;
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  const aboutSection = document.querySelector('#about');
+  if (aboutSection) skillObserver.observe(aboutSection);
+
+  /* ===== Artifact Filters ===== */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.artifact-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('hidden');
+          card.style.animation = 'fadeIn .4s ease';
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  /* ===== Artifact Modal ===== */
+  const overlay = document.getElementById('modalOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalMeta = document.getElementById('modalMeta');
+  const modalDesc = document.getElementById('modalDesc');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      modalTitle.textContent = card.dataset.title;
+      modalMeta.textContent = card.dataset.meta;
+      modalDesc.textContent = card.dataset.desc;
+      overlay.classList.add('active');
+    });
+  });
+
+  function closeModal() {
+    overlay.classList.remove('active');
+  }
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  /* ===== Smooth Scroll Offset for Fixed Navbar ===== */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
